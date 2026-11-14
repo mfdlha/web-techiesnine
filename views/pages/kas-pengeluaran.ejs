@@ -16,6 +16,7 @@
           <tr class="border-b border-stone-200/80 dark:border-stone-800 bg-stone-50/75 dark:bg-stone-900/40 text-stone-500 dark:text-stone-400 text-xs uppercase font-medium tracking-wider">
             <th scope="col" class="py-3.5 pl-6 pr-4">Tanggal</th>
             <th scope="col" class="py-3.5 px-4">Keterangan Belanja</th>
+            <th scope="col" class="py-3.5 px-4">Jenis Mutasi</th>
             <th scope="col" class="py-3.5 pl-4 pr-6 text-right whitespace-nowrap">Nominal (Rp)</th>
           </tr>
         </thead>
@@ -29,6 +30,11 @@
                 <td class="py-3.5 px-4 font-medium text-stone-900 dark:text-white leading-relaxed">
                   <%= p.keterangan %>
                 </td>
+                <td class="py-3.5 px-4 whitespace-nowrap">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-rose-100 text-rose-800 dark:bg-rose-950/50 dark:text-rose-400 border border-rose-200 dark:border-rose-800">
+                    <span>Pengeluaran</span>
+                  </span>
+                </td>
                 <td class="py-3.5 pl-4 pr-6 text-right tabular-nums font-semibold whitespace-nowrap text-rose-600 dark:text-rose-400">
                   -Rp <%= Number(p.nominal).toLocaleString('id-ID') %>
                 </td>
@@ -36,7 +42,7 @@
             <% }); %>
           <% } else { %>
             <tr>
-              <td colspan="3" class="py-8 text-center text-xs text-stone-400 italic">
+              <td colspan="4" class="py-8 text-center text-xs text-stone-400 italic">
                 Belum ada catatan pengeluaran kas.
               </td>
             </tr>

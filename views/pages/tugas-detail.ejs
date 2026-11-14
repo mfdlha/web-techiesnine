@@ -45,14 +45,16 @@
       <span>Kembali ke Daftar Tugas</span>
     </a>
 
-    <!-- Meta Badges: Matkul, Tipe, Status Deadline -->
-    <div class="flex items-center gap-2 flex-wrap mb-3">
-      <span class="bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900 text-xs font-bold px-2.5 py-1 rounded-md">
-        <%= tugas.matkul %>
-      </span>
-      <span class="border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 text-xs font-medium px-2.5 py-1 rounded-md bg-stone-50 dark:bg-stone-800/60">
-        <%= tugas.tipe %>
-      </span>
+    <!-- Meta Badges: Matkul, Tipe di Kiri, Status Deadline di Kanan -->
+    <div class="flex items-center justify-between flex-wrap gap-2 mb-4">
+      <div class="flex items-center gap-2">
+        <span class="bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900 text-xs font-bold px-2.5 py-1 rounded-md">
+          <%= tugas.matkul %>
+        </span>
+        <span class="border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 text-xs font-medium px-2.5 py-1 rounded-md bg-stone-50 dark:bg-stone-800/60">
+          <%= tugas.tipe %>
+        </span>
+      </div>
       <span class="inline-flex items-center text-xs px-2.5 py-0.5 rounded-full border <%= pillColor %> font-medium tabular-nums shadow-xs whitespace-nowrap">
         <%= pillText %>
       </span>
@@ -122,14 +124,13 @@
     </div>
 
     <!-- Navigasi Bawah -->
-    <div class="flex items-center justify-between text-xs pt-2">
+    <div class="text-xs pt-2">
       <a 
         href="/tugas" 
         class="inline-flex items-center gap-1.5 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition font-medium"
       >
         <span>← Kembali ke Daftar Semua Tugas</span>
       </a>
-      <span class="text-stone-400 dark:text-stone-500">Kelas 05TPLP009</span>
     </div>
 
   </div>
