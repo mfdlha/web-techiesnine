@@ -339,6 +339,21 @@ app.get('/kas', async (req, res) => {
   }
 });
 
+// GET /kas/pemasukan - Detail Pemasukan Kas Publik
+app.get('/kas/pemasukan', async (req, res) => {
+  try {
+    const result = await db.execute("SELECT * FROM kas WHERE LOWER(jenis) = 'pemasukan' ORDER BY tanggal DESC");
+    res.render('pages/kas-pemasukan', {
+      title: 'Detail Pemasukan Kas - techiesnine',
+      currentPage: 'kas',
+      pemasukan: result.rows || []
+    });
+  } catch (error) {
+    console.error('Error load detail pemasukan:', error);
+    res.redirect('/kas');
+  }
+});
+
 // GET /kas/pengeluaran - Detail Pengeluaran Kas Publik
 app.get('/kas/pengeluaran', async (req, res) => {
   try {

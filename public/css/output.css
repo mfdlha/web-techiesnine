@@ -1553,6 +1553,10 @@ video {
   flex-wrap: wrap;
 }
 
+.items-start {
+  align-items: flex-start;
+}
+
 .items-end {
   align-items: flex-end;
 }
@@ -2128,10 +2132,6 @@ video {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
-}
-
-.pb-2\.5 {
-  padding-bottom: 0.625rem;
 }
 
 .pb-20 {
