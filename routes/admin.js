@@ -6,11 +6,12 @@ const db = require('../config/db');
 require('dotenv').config();
 
 // Middleware Basic Auth
+const adminUser = process.env.ADMIN_USERNAME || 'admin';
 const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
 
 router.use(
   basicAuth({
-    users: { admin: adminPassword },
+    users: { [adminUser]: adminPassword },
     challenge: true,
     realm: 'Portal Admin 05TPLP009',
     unauthorizedResponse: () => 'Akses ditolak: Autentikasi diperlukan untuk membuka Panel Admin.',
