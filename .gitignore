@@ -1,6 +1,20 @@
+# Dependency directories
 node_modules/
+
+# Environment variables (SANGAT PENTING!)
 .env
-.DS_Store
+.env.*
+
+# Logs
+logs
 *.log
-*.db
-*.db-journal
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Build outputs (Opsional, tapi Tailwind output biasanya di-generate ulang di server)
+# public/css/output.css
