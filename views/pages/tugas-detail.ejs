@@ -1,0 +1,138 @@
+<% 
+  const now = new Date();
+  const deadline = new Date(tugas.batas_waktu);
+  const diffTime = deadline - now;
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  
+  let pillText = "";
+  let pillColor = "";
+  
+  if (tugas.status === 'Selesai') {
+    pillText = "Selesai";
+    pillColor = "bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-300 border-stone-200 dark:border-stone-700";
+  } else if (diffDays < 0) {
+    pillText = "Lewat Tenggat";
+    pillColor = "bg-rose-500/10 text-rose-400 border-rose-500/20";
+  } else if (diffDays === 0) {
+    pillText = "Hari Ini";
+    pillColor = "bg-red-500/10 text-red-400 border-red-500/30 font-semibold";
+  } else if (diffDays <= 2) {
+    pillText = "H-" + diffDays;
+    pillColor = "bg-red-500/10 text-red-400 border-red-500/30 font-semibold";
+  } else if (diffDays <= 5) {
+    pillText = diffDays + " Hari Lagi";
+    pillColor = "bg-amber-500/10 text-amber-400 border-amber-500/30";
+  } else {
+    pillText = diffDays + " Hari Lagi";
+    pillColor = "bg-emerald-500/10 text-emerald-400 border-emerald-500/30";
+  }
+%>
+
+<!-- =======================================================================
+     ZONA ATAS: Header Halaman & Detail Ringkasan
+     ======================================================================= -->
+<div class="bg-[#F5F4EE] dark:bg-[#1A1918] p-6 lg:p-8 border-b border-stone-200 dark:border-stone-800 transition-colors">
+  
+  <div class="max-w-4xl mx-auto">
+    <!-- Tombol Kembali -->
+    <a 
+      href="/tugas" 
+      class="inline-flex items-center gap-2 text-xs font-semibold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition mb-5 group"
+    >
+      <svg class="w-4 h-4 text-stone-400 group-hover:-translate-x-0.5 transition duration-150" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/>
+      </svg>
+      <span>Kembali ke Daftar Tugas</span>
+    </a>
+
+    <!-- Meta Badges: Matkul, Tipe, Status Deadline -->
+    <div class="flex items-center gap-2 flex-wrap mb-3">
+      <span class="bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900 text-xs font-bold px-2.5 py-1 rounded-md">
+        <%= tugas.matkul %>
+      </span>
+      <span class="border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 text-xs font-medium px-2.5 py-1 rounded-md bg-stone-50 dark:bg-stone-800/60">
+        <%= tugas.tipe %>
+      </span>
+      <span class="inline-flex items-center text-xs px-2.5 py-0.5 rounded-full border <%= pillColor %> font-medium tabular-nums shadow-xs whitespace-nowrap">
+        <%= pillText %>
+      </span>
+    </div>
+
+    <!-- Judul Tugas Lengkap -->
+    <h1 class="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl tracking-tight text-stone-900 dark:text-white leading-tight">
+      <%= tugas.judul %>
+    </h1>
+
+    <!-- Batas Waktu Tenggat -->
+    <div class="mt-4 flex items-center gap-2 text-xs sm:text-sm text-stone-600 dark:text-stone-400 tabular-nums">
+      <svg class="w-4 h-4 text-stone-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      <span>Batas Waktu Pengumpulan: <strong class="text-stone-900 dark:text-white font-semibold"><%= tugas.batas_waktu ? tugas.batas_waktu.replace('T', ' ') : '-' %></strong></span>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- =======================================================================
+     ZONA BAWAH: KONTEN DESKRIPSI & INSTRUKSI PENUGASAN (PROSE / MARKDOWN)
+     ======================================================================= -->
+<div class="bg-white dark:bg-[#121211] p-6 lg:p-8 flex-1 transition-colors">
+  
+  <div class="max-w-4xl mx-auto space-y-8">
+    
+    <!-- Kartu Konten Utama -->
+    <div class="bg-white dark:bg-[#1C1B1A] border border-stone-200 dark:border-stone-800 rounded-2xl p-6 sm:p-8 shadow-xs">
+      
+      <!-- Label Header Konten -->
+      <div class="text-xs font-semibold text-stone-400 dark:text-stone-500 uppercase tracking-wider mb-6 pb-3 border-b border-stone-100 dark:border-stone-800 flex items-center justify-between">
+        <span>Instruksi & Deskripsi Penugasan</span>
+        <span class="text-[11px] text-stone-400 font-mono">Format Markdown</span>
+      </div>
+
+      <!-- Render HTML Deskripsi dari Markdown via Marked -->
+      <article class="prose prose-stone dark:prose-invert max-w-none prose-headings:font-heading prose-headings:tracking-tight prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-img:rounded-xl">
+        <% if (tugas.deskripsi_html && tugas.deskripsi_html.trim() !== '') { %>
+          <%- tugas.deskripsi_html %>
+        <% } else { %>
+          <p class="italic text-stone-400 text-sm">Tidak ada instruksi atau deskripsi tertulis untuk tugas ini.</p>
+        <% } %>
+      </article>
+
+      <!-- Tombol Buka Google Drive jika tersedia -->
+      <% if (tugas.link_drive && tugas.link_drive.trim() !== '') { %>
+        <div class="mt-8 pt-6 border-t border-stone-100 dark:border-stone-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="text-xs text-stone-500 dark:text-stone-400">
+            Tautan berkas pendukung dan repositori tugas:
+          </div>
+          <a 
+            href="<%= tugas.link_drive %>" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900 hover:bg-stone-800 dark:hover:bg-white transition shadow-xs self-start sm:self-auto"
+          >
+            <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"/>
+            </svg>
+            <span>Buka Google Drive ↗</span>
+          </a>
+        </div>
+      <% } %>
+
+    </div>
+
+    <!-- Navigasi Bawah -->
+    <div class="flex items-center justify-between text-xs pt-2">
+      <a 
+        href="/tugas" 
+        class="inline-flex items-center gap-1.5 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition font-medium"
+      >
+        <span>← Kembali ke Daftar Semua Tugas</span>
+      </a>
+      <span class="text-stone-400 dark:text-stone-500">Kelas 05TPLP009</span>
+    </div>
+
+  </div>
+
+</div>

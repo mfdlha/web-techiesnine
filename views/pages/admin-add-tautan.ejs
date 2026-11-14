@@ -1,0 +1,136 @@
+<!-- Header & Back Navigation -->
+<div class="bg-[#F5F4EE] dark:bg-[#1A1918] p-6 lg:p-8 border-b border-stone-200 dark:border-stone-800 transition-colors">
+  <div class="max-w-2xl mx-auto flex items-center justify-between gap-4">
+    <div>
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-white dark:bg-[#1C1B1A] border border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300 mb-2 shadow-xs">
+        <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+        <span>Formulir Terpisah • Pintasan Tautan</span>
+      </div>
+      <h1 class="font-heading font-extrabold text-2xl sm:text-3xl tracking-tight text-stone-900 dark:text-white">
+        Tambah Tautan Cepat
+      </h1>
+      <p class="text-xs sm:text-sm text-stone-500 dark:text-stone-400 mt-1">
+        Daftarkan tautan eksternal penting kelas yang akan tampil di sidebar navigasi user.
+      </p>
+    </div>
+
+    <!-- Tombol Kembali ke Daftar -->
+    <a 
+      href="/admin/tautan-list" 
+      class="inline-flex items-center gap-2 text-xs font-semibold text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white border border-stone-200 dark:border-stone-700 px-3.5 py-2 rounded-xl bg-white dark:bg-[#1C1B1A] hover:bg-stone-50 dark:hover:bg-stone-800 transition shadow-xs flex-shrink-0"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/>
+      </svg>
+      <span class="hidden sm:inline">Daftar Tautan</span>
+      <span class="sm:hidden">Daftar</span>
+    </a>
+  </div>
+</div>
+
+<!-- Main Form Container -->
+<div class="bg-white dark:bg-[#121211] p-6 lg:p-8 flex-1 transition-colors">
+  <div class="max-w-xl mx-auto bg-white dark:bg-[#1C1B1A] border border-stone-200/90 dark:border-stone-800 rounded-2xl p-6 sm:p-8 shadow-xs">
+    
+    <div class="flex items-center gap-3 pb-5 border-b border-stone-100 dark:border-stone-800 mb-6">
+      <div class="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center flex-shrink-0">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/>
+        </svg>
+      </div>
+      <div>
+        <h2 class="font-heading font-bold text-lg text-stone-900 dark:text-white">
+          Data Tautan Baru
+        </h2>
+        <p class="text-xs text-stone-500 dark:text-stone-400">
+          Entri tautan akan langsung muncul di sidebar mahasiswa
+        </p>
+      </div>
+    </div>
+
+    <form action="/admin/tautan" method="POST" class="space-y-5">
+      
+      <!-- Nama Tautan -->
+      <div>
+        <label for="nama_tautan" class="block text-xs font-semibold text-stone-700 dark:text-stone-300 uppercase tracking-wider mb-1.5">
+          Nama Tautan
+        </label>
+        <input 
+          type="text" 
+          id="nama_tautan" 
+          name="nama_tautan" 
+          required
+          placeholder="Contoh: Portal SIAKAD UNPAM" 
+          class="w-full bg-stone-50 dark:bg-[#121211] border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-stone-100 placeholder-stone-400 dark:placeholder-stone-500 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-stone-900 dark:focus:ring-stone-300 focus:border-stone-900 dark:focus:border-stone-300 transition"
+        />
+      </div>
+
+      <!-- URL Tujuan -->
+      <div>
+        <label for="url" class="block text-xs font-semibold text-stone-700 dark:text-stone-300 uppercase tracking-wider mb-1.5">
+          URL Web / Tautan Tujuan
+        </label>
+        <input 
+          type="url" 
+          id="url" 
+          name="url" 
+          required
+          placeholder="https://siakad.unpam.ac.id" 
+          class="w-full bg-stone-50 dark:bg-[#121211] border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-stone-100 placeholder-stone-400 dark:placeholder-stone-500 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-stone-900 dark:focus:ring-stone-300 focus:border-stone-900 dark:focus:border-stone-300 transition"
+        />
+      </div>
+
+      <!-- Kode Ikon SVG (Opsional) -->
+      <div>
+        <label for="ikon_svg" class="block text-xs font-semibold text-stone-700 dark:text-stone-300 uppercase tracking-wider mb-1.5">
+          Kode Ikon SVG <span class="text-stone-400 font-normal lowercase">(opsional)</span>
+        </label>
+        <textarea 
+          id="ikon_svg" 
+          name="ikon_svg" 
+          rows="3"
+          placeholder='<svg class="w-4 h-4 text-sky-500 flex-shrink-0" fill="none" stroke="currentColor" ...>...</svg>'
+          class="w-full font-mono text-xs bg-stone-50 dark:bg-[#121211] border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-stone-100 placeholder-stone-400 dark:placeholder-stone-500 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-stone-900 dark:focus:ring-stone-300 focus:border-stone-900 dark:focus:border-stone-300 transition"
+        ></textarea>
+        <p class="text-[11px] text-stone-400 dark:text-stone-500 mt-1">Kosongkan jika ingin menggunakan ikon tautan standar bawaan.</p>
+      </div>
+
+      <!-- Status Visibilitas -->
+      <div>
+        <label for="status" class="block text-xs font-semibold text-stone-700 dark:text-stone-300 uppercase tracking-wider mb-1.5">
+          Status Tampilan
+        </label>
+        <select 
+          id="status" 
+          name="status" 
+          required
+          class="w-full bg-stone-50 dark:bg-[#121211] border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-stone-100 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-stone-900 dark:focus:ring-stone-300 focus:border-stone-900 dark:focus:border-stone-300 transition"
+        >
+          <option value="Aktif" selected>Aktif (Tampilkan di Sidebar)</option>
+          <option value="Sembunyi">Sembunyi (Arsipkan)</option>
+        </select>
+      </div>
+
+      <!-- Tombol Aksi -->
+      <div class="pt-4 flex items-center justify-end gap-3 border-t border-stone-100 dark:border-stone-800">
+        <a 
+          href="/admin/tautan-list" 
+          class="px-4 py-2.5 text-xs sm:text-sm font-semibold rounded-xl text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition"
+        >
+          Batal
+        </a>
+        <button 
+          type="submit" 
+          class="inline-flex items-center gap-2 bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900 hover:bg-stone-800 dark:hover:bg-white text-xs sm:text-sm font-semibold rounded-xl px-5 py-2.5 shadow-xs transition"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+          </svg>
+          <span>Simpan Tautan</span>
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</div>

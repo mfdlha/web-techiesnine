@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .bg-hatch {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      #d6d3d1,
+      #d6d3d1 2px,
+      #f5f4ee 2px,
+      #f5f4ee 6px
+    );
+  }
+  .bg-hatch-dark {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      #57534e,
+      #57534e 2px,
+      #1c1917 2px,
+      #1c1917 6px
+    );
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
