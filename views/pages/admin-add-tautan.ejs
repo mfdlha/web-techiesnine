@@ -95,6 +95,26 @@
         <p class="text-[11px] text-stone-400 dark:text-stone-500 mt-1">Kosongkan jika ingin menggunakan ikon tautan standar bawaan.</p>
       </div>
 
+      <!-- Target Penempatan -->
+      <div>
+        <label for="target_matkul" class="block text-xs font-semibold text-stone-700 dark:text-stone-300 uppercase tracking-wider mb-1.5">
+          Target Penempatan
+        </label>
+        <select 
+          id="target_matkul" 
+          name="target_matkul" 
+          class="w-full bg-stone-50 dark:bg-[#121211] border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-stone-100 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-stone-900 dark:focus:ring-stone-300 focus:border-stone-900 dark:focus:border-stone-300 transition"
+        >
+          <option value="Global" <%= (typeof data !== 'undefined' && data.target_matkul === 'Global') ? 'selected' : '' %>>Global (Muncul di Sidebar)</option>
+          <% if (typeof mataKuliah !== 'undefined') { %>
+            <% mataKuliah.forEach(function(mk) { %>
+              <option value="<%= mk.nama_matkul %>" <%= (typeof data !== 'undefined' && data.target_matkul === mk.nama_matkul) ? 'selected' : '' %>>Khusus Mata Kuliah: <%= mk.nama_matkul %></option>
+            <% }); %>
+          <% } %>
+        </select>
+        <p class="text-[11px] text-stone-400 dark:text-stone-500 mt-1">Pilih "Global" agar muncul di sidebar semua halaman, atau pilih matkul tertentu agar muncul di halaman Tugas matkul terkait.</p>
+      </div>
+
       <!-- Status Visibilitas -->
       <div>
         <label for="status" class="block text-xs font-semibold text-stone-700 dark:text-stone-300 uppercase tracking-wider mb-1.5">

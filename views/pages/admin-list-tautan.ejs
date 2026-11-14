@@ -125,6 +125,7 @@
               <th scope="col" class="py-3 pl-6 pr-4 font-semibold">#</th>
               <th scope="col" class="py-3 px-4 font-semibold">Nama Tautan</th>
               <th scope="col" class="py-3 px-4 font-semibold">URL Tujuan</th>
+              <th scope="col" class="py-3 px-4 font-semibold text-left">Penempatan</th>
               <th scope="col" class="py-3 px-4 font-semibold">Status</th>
               <th scope="col" class="py-3 px-4 font-semibold text-right">Aksi</th>
             </tr>
@@ -157,6 +158,9 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/>
                       </svg>
                     </a>
+                  </td>
+                  <td class="px-4 py-3 text-stone-600 dark:text-stone-300">
+                    <%= t.target_matkul || 'Global' %>
                   </td>
                   <td class="py-3.5 px-4">
                     <% if (t.status === 'Aktif') { %>
@@ -195,7 +199,7 @@
               <% }); %>
             <% } else { %>
               <tr>
-                <td colspan="5" class="py-12 text-center text-xs text-stone-400 italic">
+                <td colspan="6" class="py-12 text-center text-xs text-stone-400 italic">
                   Belum ada data tautan cepat yang tersimpan di basis data. Klik tombol <strong>+ Tambah Tautan</strong> untuk menambahkan tautan.
                 </td>
               </tr>

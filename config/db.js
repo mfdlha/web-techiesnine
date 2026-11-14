@@ -144,9 +144,17 @@ async function initDb() {
         nama_tautan TEXT,
         url TEXT,
         ikon_svg TEXT,
-        status TEXT DEFAULT 'Aktif'
+        status TEXT DEFAULT 'Aktif',
+        target_matkul TEXT DEFAULT 'Global'
       )
     `);
+
+    // Tambah kolom target_matkul jika tabel tautan_cepat sudah ada sebelumnya
+    try {
+      await db.execute("ALTER TABLE tautan_cepat ADD COLUMN target_matkul TEXT DEFAULT 'Global'");
+    } catch (err) {
+      // Abaikan jika kolom sudah ada
+    }
 
     // Insert data awal ke tabel tautan_cepat HANYA jika tabel kosong
     const countTautanRes = await db.execute("SELECT COUNT(*) as count FROM tautan_cepat");

@@ -273,12 +273,18 @@ router.get('/matkul/add', (req, res) => {
 });
 
 // GET /admin/tautan/add - Halaman Tambah Tautan Cepat
-router.get('/tautan/add', (req, res) => {
-  res.render('pages/admin-add-tautan', {
-    title: 'Tambah Tautan Cepat - techiesnine Admin',
-    currentPage: 'admin',
-    isAdmin: true,
-  });
+router.get('/tautan/add', async (req, res) => {
+  try {
+    const matkulRes = await db.execute('SELECT * FROM mata_kuliah ORDER BY nama_matkul ASC');
+    res.render('pages/admin-add-tautan', {
+      title: 'Tambah Tautan Cepat - techiesnine Admin',
+      currentPage: 'admin',
+      mataKuliah: matkulRes.rows || [],
+      isAdmin: true,
+    });
+  } catch (error) {
+    res.redirect('/admin/tautan-list');
+  }
 });
 
 // ============================================================================
@@ -538,15 +544,16 @@ router.post('/matkul/add', async (req, res) => {
 // POST /admin/tautan - Tambah Tautan Cepat Baru
 router.post('/tautan', async (req, res) => {
   try {
-    const { nama_tautan, url, ikon_svg, status } = req.body;
+    const { nama_tautan, url, ikon_svg, status, target_matkul } = req.body;
 
     await db.execute({
-      sql: `INSERT INTO tautan_cepat (nama_tautan, url, ikon_svg, status) VALUES (?, ?, ?, ?)`,
+      sql: `INSERT INTO tautan_cepat (nama_tautan, url, ikon_svg, status, target_matkul) VALUES (?, ?, ?, ?, ?)`,
       args: [
         nama_tautan || '',
         url || '',
         ikon_svg || '',
         status || 'Aktif',
+        target_matkul || 'Global',
       ],
     });
 
@@ -560,15 +567,16 @@ router.post('/tautan', async (req, res) => {
 // Alias POST /admin/tautan/add
 router.post('/tautan/add', async (req, res) => {
   try {
-    const { nama_tautan, url, ikon_svg, status } = req.body;
+    const { nama_tautan, url, ikon_svg, status, target_matkul } = req.body;
 
     await db.execute({
-      sql: `INSERT INTO tautan_cepat (nama_tautan, url, ikon_svg, status) VALUES (?, ?, ?, ?)`,
+      sql: `INSERT INTO tautan_cepat (nama_tautan, url, ikon_svg, status, target_matkul) VALUES (?, ?, ?, ?, ?)`,
       args: [
         nama_tautan || '',
         url || '',
         ikon_svg || '',
         status || 'Aktif',
+        target_matkul || 'Global',
       ],
     });
 
@@ -695,14 +703,15 @@ router.post('/:type/edit/:id', async (req, res) => {
         ],
       });
     } else if (type === 'tautan') {
-      const { nama_tautan, url, ikon_svg, status } = req.body;
+      const { nama_tautan, url, ikon_svg, status, target_matkul } = req.body;
       await db.execute({
-        sql: `UPDATE tautan_cepat SET nama_tautan = ?, url = ?, ikon_svg = ?, status = ? WHERE id = ?`,
+        sql: `UPDATE tautan_cepat SET nama_tautan = ?, url = ?, ikon_svg = ?, status = ?, target_matkul = ? WHERE id = ?`,
         args: [
           nama_tautan || '',
           url || '',
           ikon_svg || '',
           status || 'Aktif',
+          target_matkul || 'Global',
           id,
         ],
       });

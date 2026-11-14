@@ -13,6 +13,10 @@ if (db.initDb) {
   db.initDb();
 }
 
+(async () => {
+  try { await db.execute("ALTER TABLE tautan_cepat ADD COLUMN target_matkul TEXT DEFAULT 'Global'"); } catch (e) { /* ignore */ }
+})();
+
 // View Engine Setup
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
@@ -31,7 +35,7 @@ app.use(async (req, res, next) => {
   try {
     const [matkulRes, tautanRes] = await Promise.all([
       db.execute("SELECT * FROM mata_kuliah ORDER BY id ASC"),
-      db.execute("SELECT * FROM tautan_cepat WHERE status = 'Aktif' ORDER BY id ASC")
+      db.execute("SELECT * FROM tautan_cepat WHERE status = 'Aktif' AND (target_matkul = 'Global' OR target_matkul IS NULL) ORDER BY id ASC")
     ]);
     res.locals.mataKuliah = matkulRes.rows || [];
     res.locals.tautanCepat = tautanRes.rows || [];
@@ -92,7 +96,7 @@ app.get('/', async (req, res) => {
         args: [nowIso]
       }),
       db.execute("SELECT * FROM mata_kuliah ORDER BY id ASC"),
-      db.execute("SELECT * FROM tautan_cepat WHERE status = 'Aktif' ORDER BY id ASC")
+      db.execute("SELECT * FROM tautan_cepat WHERE status = 'Aktif' AND (target_matkul = 'Global' OR target_matkul IS NULL) ORDER BY id ASC")
     ]);
 
     const tugasAktif = tugasAktifRes.rows || [];
@@ -197,7 +201,7 @@ app.get('/tugas', async (req, res) => {
       db.execute({ sql: sqlAktif, args: argsAktif }),
       db.execute({ sql: sqlArsip, args: argsArsip }),
       db.execute("SELECT * FROM mata_kuliah ORDER BY id ASC"),
-      db.execute("SELECT * FROM tautan_cepat WHERE status = 'Aktif' ORDER BY id ASC")
+      db.execute("SELECT * FROM tautan_cepat WHERE status = 'Aktif' AND (target_matkul = 'Global' OR target_matkul IS NULL) ORDER BY id ASC")
     ]);
 
     const tugasAktif = tugasAktifRes.rows || [];
@@ -206,6 +210,15 @@ app.get('/tugas', async (req, res) => {
     const tautanCepat = tautanRes.rows || [];
 
     const selectedMatkul = mataKuliah.find(m => m.nama_matkul === filterMatkul);
+
+    let tautanMatkulKhusus = [];
+    if (filterMatkul && filterMatkul !== 'Semua') {
+      const tautanKhususRes = await db.execute({
+        sql: "SELECT * FROM tautan_cepat WHERE status = 'Aktif' AND target_matkul = ?",
+        args: [filterMatkul]
+      });
+      tautanMatkulKhusus = tautanKhususRes.rows || [];
+    }
 
     res.render('pages/tugas', {
       title: filterMatkul ? `Tugas: ${filterMatkul} - techiesnine` : 'Daftar Tugas & E-Learning - techiesnine | 05TPLP009',
@@ -216,6 +229,7 @@ app.get('/tugas', async (req, res) => {
       sort,
       sortOrder: sort,
       selectedMatkul,
+      tautanMatkulKhusus,
       tugasAktif,
       tugasArsip,
       tugas: [...tugasAktif, ...tugasArsip],
@@ -233,6 +247,7 @@ app.get('/tugas', async (req, res) => {
       sort: 'terdekat',
       sortOrder: 'terdekat',
       selectedMatkul: null,
+      tautanMatkulKhusus: [],
       tugasAktif: [],
       tugasArsip: [],
       tugas: [],
@@ -285,7 +300,7 @@ app.get('/kas', async (req, res) => {
         FROM kas
       `),
       db.execute("SELECT * FROM mata_kuliah ORDER BY id ASC"),
-      db.execute("SELECT * FROM tautan_cepat WHERE status = 'Aktif' ORDER BY id ASC")
+      db.execute("SELECT * FROM tautan_cepat WHERE status = 'Aktif' AND (target_matkul = 'Global' OR target_matkul IS NULL) ORDER BY id ASC")
     ]);
 
     const kas = kasRes.rows || [];
@@ -337,7 +352,7 @@ app.get('/mentari', async (req, res) => {
         args: [nowIso]
       }),
       db.execute("SELECT * FROM mata_kuliah ORDER BY id ASC"),
-      db.execute("SELECT * FROM tautan_cepat WHERE status = 'Aktif' ORDER BY id ASC")
+      db.execute("SELECT * FROM tautan_cepat WHERE status = 'Aktif' AND (target_matkul = 'Global' OR target_matkul IS NULL) ORDER BY id ASC")
     ]);
 
     const mentariAktif = mentariAktifRes.rows || [];
