@@ -93,7 +93,7 @@
         <div>
           <div class="flex items-center gap-3">
             <h2 class="text-xl font-bold text-stone-900 dark:text-white tracking-tight">Tugas Aktif & Mendatang</h2>
-            <span class="px-2.5 py-1 bg-blue-600/10 text-blue-500 dark:text-blue-400 border border-blue-600/20 rounded-full text-xs font-medium whitespace-nowrap">
+            <span class="px-2.5 py-1 bg-blue-600/10 text-blue-500 dark:text-blue-400 rounded-full text-xs font-medium whitespace-nowrap">
               <%= (typeof tugasAktif !== 'undefined' ? tugasAktif.length : 0) %> Aktif
             </span>
           </div>
@@ -175,22 +175,22 @@
               
               if (t.status === 'Selesai') {
                 pillText = "Selesai";
-                pillColor = "bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-300 border-stone-200 dark:border-stone-700";
+                pillColor = "bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-300";
               } else if (diffDays < 0) {
                 pillText = "Lewat Tenggat";
-                pillColor = "bg-rose-500/10 text-rose-400 border-rose-500/20";
+                pillColor = "bg-rose-500/10 text-rose-400";
               } else if (diffDays === 0) {
                 pillText = "Hari Ini";
-                pillColor = "bg-red-500/10 text-red-400 border-red-500/30 font-semibold";
+                pillColor = "bg-red-500/10 text-red-400 font-semibold";
               } else if (diffDays <= 2) {
                 pillText = "H-" + diffDays;
-                pillColor = "bg-red-500/10 text-red-400 border-red-500/30 font-semibold";
+                pillColor = "bg-red-500/10 text-red-400 font-semibold";
               } else if (diffDays <= 5) {
                 pillText = diffDays + " Hari Lagi";
-                pillColor = "bg-amber-500/10 text-amber-400 border-amber-500/30";
+                pillColor = "bg-amber-500/10 text-amber-400";
               } else {
                 pillText = diffDays + " Hari Lagi";
-                pillColor = "bg-emerald-500/10 text-emerald-400 border-emerald-500/30";
+                pillColor = "bg-emerald-500/10 text-emerald-400";
               }
             %>
             
@@ -207,13 +207,13 @@
                     <span class="bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900 text-xs font-bold px-2 py-0.5 rounded-md">
                       <%= t.matkul %>
                     </span>
-                    <span class="border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 text-xs font-medium px-2 py-0.5 rounded-md bg-stone-50 dark:bg-stone-800/60">
+                    <span class="text-stone-600 dark:text-stone-400 text-xs font-medium px-2 py-0.5 rounded-md bg-stone-50 dark:bg-stone-800/60">
                       <%= t.tipe %>
                     </span>
                   </div>
 
                   <!-- Badge Status Deadline -->
-                  <span class="inline-flex items-center text-xs px-2.5 py-0.5 rounded-full border <%= pillColor %> font-medium tabular-nums shadow-xs whitespace-nowrap">
+                  <span class="inline-flex items-center text-xs px-2.5 py-0.5 rounded-full <%= pillColor %> font-medium tabular-nums shadow-xs whitespace-nowrap">
                     <%= pillText %>
                   </span>
                 </div>
@@ -284,7 +284,7 @@
         </div>
 
         <div class="flex items-center gap-2">
-          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-stone-100 text-stone-700 dark:bg-stone-800 dark:text-stone-300 border border-stone-200 dark:border-stone-700 tabular-nums">
+          <span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-stone-100 text-stone-700 dark:bg-stone-800 dark:text-stone-300 tabular-nums">
             <%= (typeof tugasArsip !== 'undefined' ? tugasArsip.length : 0) %> Diarsipkan
           </span>
         </div>
@@ -315,7 +315,7 @@
                   <%= t.batas_waktu ? t.batas_waktu.slice(0, 10) : '' %>
                 </span>
                 
-                <span class="inline-flex items-center text-[11px] px-2.5 py-0.5 rounded-full font-medium bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
+                <span class="inline-flex items-center text-[11px] px-2.5 py-0.5 rounded-full font-medium bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400">
                   Selesai
                 </span>
 

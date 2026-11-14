@@ -36,10 +36,7 @@
       <!-- Sub-header Section 1 -->
       <div class="flex items-center justify-between gap-4 mb-6">
         <div>
-          <div class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
-            <span>Sesi Berjalan</span>
-          </div>
-          <h2 class="font-heading font-extrabold text-xl sm:text-2xl text-stone-900 dark:text-white tracking-tight mt-1">
+          <h2 class="font-heading font-extrabold text-xl sm:text-2xl text-stone-900 dark:text-white tracking-tight">
             Sesi Mentari Berjalan
           </h2>
           <p class="text-xs sm:text-sm text-stone-500 dark:text-stone-400 mt-0.5">
@@ -47,7 +44,7 @@
           </p>
         </div>
 
-        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-900/60 tabular-nums">
+        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 tabular-nums">
           <%= (typeof mentariAktif !== 'undefined' ? mentariAktif.length : 0) %> Aktif
         </span>
       </div>
@@ -60,11 +57,10 @@
               <div>
                 <!-- Header Kartu: badge pertemuan & status -->
                 <div class="flex items-center justify-between gap-2">
-                  <span class="bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 text-xs px-2.5 py-1 rounded-md font-semibold font-mono">
+                  <span class="bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 text-xs px-2.5 py-1 rounded-md font-semibold">
                     <%= m.pertemuan %>
                   </span>
-                  <span class="bg-emerald-100 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400 text-xs px-2.5 py-1 rounded-full font-medium flex items-center gap-1.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span class="bg-emerald-100 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400 text-xs px-2.5 py-1 rounded-full font-medium inline-flex items-center">
                     <span>Sedang Buka</span>
                   </span>
                 </div>
@@ -152,7 +148,7 @@
         </div>
 
         <div class="flex items-center gap-2">
-          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-stone-100 text-stone-700 dark:bg-stone-800 dark:text-stone-300 border border-stone-200 dark:border-stone-700 tabular-nums">
+          <span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-stone-100 text-stone-700 dark:bg-stone-800 dark:text-stone-300 tabular-nums">
             <%= (typeof mentariArsip !== 'undefined' ? mentariArsip.length : 0) %> Diarsipkan
           </span>
         </div>
@@ -166,11 +162,10 @@
               <div>
                 <!-- Header Kartu: badge pertemuan & status arsip -->
                 <div class="flex items-center justify-between gap-2">
-                  <span class="bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 text-xs px-2.5 py-1 rounded-md font-medium font-mono">
+                  <span class="bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 text-xs px-2.5 py-1 rounded-md font-medium">
                     <%= m.pertemuan %>
                   </span>
-                  <span class="bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-400 text-xs px-2.5 py-1 rounded-full font-medium flex items-center gap-1.5 border border-stone-200 dark:border-stone-700">
-                    <span class="w-1.5 h-1.5 rounded-full bg-stone-400"></span>
+                  <span class="bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-400 text-xs px-2.5 py-1 rounded-full font-medium inline-flex items-center">
                     <span>Tenggat Ditutup</span>
                   </span>
                 </div>
@@ -179,9 +174,6 @@
                 <h3 class="font-heading font-bold text-lg text-stone-700 dark:text-stone-200 mt-3 leading-snug">
                   <%= m.matkul %>
                 </h3>
-                <p class="text-xs text-stone-400 dark:text-stone-500 mt-0.5 font-mono">
-                  Sesi Selesai / Ditutup
-                </p>
 
                 <!-- Checklist Sesi Lampau -->
                 <ul class="text-sm text-stone-500 dark:text-stone-400 mt-4 space-y-1.5">
