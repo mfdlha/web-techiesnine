@@ -91,11 +91,16 @@
       <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-4 mb-6">
         <!-- Kiri: Judul dan Deskripsi -->
         <div>
-          <h2 class="text-xl font-bold text-stone-900 dark:text-white tracking-tight">Tugas Aktif & Mendatang</h2>
+          <div class="flex items-center gap-3">
+            <h2 class="text-xl font-bold text-stone-900 dark:text-white tracking-tight">Tugas Aktif & Mendatang</h2>
+            <span class="px-2.5 py-1 bg-blue-600/10 text-blue-500 dark:text-blue-400 border border-blue-600/20 rounded-full text-xs font-medium whitespace-nowrap">
+              <%= (typeof tugasAktif !== 'undefined' ? tugasAktif.length : 0) %> Aktif
+            </span>
+          </div>
           <p class="text-sm text-stone-500 dark:text-stone-400 mt-1">Penugasan yang masih aktif dan belum melewati batas waktu pengumpulan</p>
         </div>
 
-        <!-- Kanan: Filter dan Badge Aktif -->
+        <!-- Kanan: Filter dan Urutkan -->
         <div class="flex flex-wrap items-center gap-4 lg:justify-end">
           <form method="GET" class="flex flex-wrap items-center gap-3">
             <% if (typeof filterMatkul !== 'undefined' && filterMatkul) { %>
@@ -152,11 +157,6 @@
               </div>
             </div>
           </form>
-
-          <!-- Badge Jumlah Aktif posisinya ditarik ke paling kanan/sejajar form -->
-          <span class="px-3 py-1.5 bg-blue-600/10 text-blue-500 dark:text-blue-400 border border-blue-600/20 rounded-full text-xs font-medium whitespace-nowrap">
-            <%= (typeof tugasAktif !== 'undefined' ? tugasAktif.length : 0) %> Aktif
-          </span>
         </div>
       </div>
 
