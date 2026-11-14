@@ -116,7 +116,7 @@ app.get('/', async (req, res) => {
     const tautanCepat = tautanRes.rows || [];
 
     res.render('pages/beranda', {
-      title: 'Beranda - Portal 05TPLP009',
+      title: 'Beranda - techiesnine | 05TPLP009',
       currentPage: 'beranda',
       isAdmin: false,
       totalTugasAktif,
@@ -138,7 +138,7 @@ app.get('/', async (req, res) => {
   } catch (error) {
     console.error('Error saat load data beranda:', error);
     res.render('pages/beranda', {
-      title: 'Beranda - Portal 05TPLP009',
+      title: 'Beranda - techiesnine | 05TPLP009',
       currentPage: 'beranda',
       isAdmin: false,
       totalTugasAktif: 0,
@@ -208,7 +208,7 @@ app.get('/tugas', async (req, res) => {
     const selectedMatkul = mataKuliah.find(m => m.nama_matkul === filterMatkul);
 
     res.render('pages/tugas', {
-      title: filterMatkul ? `Tugas: ${filterMatkul} - 05TPLP009` : 'Daftar Tugas & E-Learning - 05TPLP009',
+      title: filterMatkul ? `Tugas: ${filterMatkul} - techiesnine` : 'Daftar Tugas & E-Learning - techiesnine | 05TPLP009',
       currentPage: 'tugas',
       isAdmin: false,
       filterMatkul,
@@ -225,7 +225,7 @@ app.get('/tugas', async (req, res) => {
   } catch (error) {
     console.error('Error saat load data tugas:', error);
     res.render('pages/tugas', {
-      title: 'Daftar Tugas & E-Learning - 05TPLP009',
+      title: 'Daftar Tugas & E-Learning - techiesnine | 05TPLP009',
       currentPage: 'tugas',
       isAdmin: false,
       filterMatkul: null,
@@ -260,7 +260,7 @@ app.get('/tugas/:id', async (req, res) => {
     tugas.deskripsi_html = tugas.deskripsi ? marked.parse(tugas.deskripsi) : '';
 
     res.render('pages/tugas-detail', {
-      title: `${tugas.judul} - Detail Tugas 05TPLP009`,
+      title: `${tugas.judul} - Detail Tugas techiesnine | 05TPLP009`,
       currentPage: 'tugas',
       isAdmin: false,
       tugas
@@ -300,7 +300,7 @@ app.get('/kas', async (req, res) => {
     const tautanCepat = tautanRes.rows || [];
 
     res.render('pages/kas', {
-      title: 'Transparansi Kas - 05TPLP009',
+      title: 'Transparansi Kas - techiesnine | 05TPLP009',
       currentPage: 'kas',
       isAdmin: false,
       kas,
@@ -311,7 +311,7 @@ app.get('/kas', async (req, res) => {
   } catch (error) {
     console.error('Error saat load data kas:', error);
     res.render('pages/kas', {
-      title: 'Transparansi Kas - 05TPLP009',
+      title: 'Transparansi Kas - techiesnine | 05TPLP009',
       currentPage: 'kas',
       isAdmin: false,
       kas: [],
@@ -346,7 +346,7 @@ app.get('/mentari', async (req, res) => {
     const tautanCepat = tautanRes.rows || [];
 
     res.render('pages/mentari', {
-      title: 'Jadwal Mentari E-Learning - 05TPLP009',
+      title: 'Jadwal Mentari E-Learning - techiesnine | 05TPLP009',
       currentPage: 'mentari',
       isAdmin: false,
       mentariAktif,
@@ -358,7 +358,7 @@ app.get('/mentari', async (req, res) => {
   } catch (error) {
     console.error('Error saat load data mentari:', error);
     res.render('pages/mentari', {
-      title: 'Jadwal Mentari E-Learning - 05TPLP009',
+      title: 'Jadwal Mentari E-Learning - techiesnine | 05TPLP009',
       currentPage: 'mentari',
       isAdmin: false,
       mentariAktif: [],

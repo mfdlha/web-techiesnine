@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= typeof title !== 'undefined' ? title : '05TPLP009 - Portal Akademik' %></title>
+  <title><%= typeof title !== 'undefined' ? title : 'techiesnine | 05TPLP009 - Portal Akademik' %></title>
+  
+  <!-- Favicon Logo techiesnine -->
+  <link rel="icon" type="image/png" href="/img/logo-techiesnine.png">
   
   <!-- Google Fonts: Inter & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,15 +44,12 @@
       <!-- ================= SIDEBAR KHUSUS ADMIN ================= -->
       <div class="flex flex-col flex-grow px-5 py-6 overflow-y-auto no-scrollbar">
         
-        <!-- Header Logo Admin Panel -->
-        <div class="mb-8 px-1">
-          <div class="flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-sm bg-stone-900 dark:bg-stone-100"></span>
-            <span class="font-heading font-extrabold text-xl tracking-tight text-stone-900 dark:text-white">
-              ADMIN PANEL
-            </span>
-          </div>
-          <p class="text-[11px] text-stone-400 dark:text-stone-500 font-mono mt-0.5">Kelas 05TPLP009</p>
+        <!-- Header Brand Admin Panel (Minimalis Tipografi) -->
+        <div class="mb-6 flex flex-col px-1">
+          <a href="/admin" class="block">
+            <span class="text-2xl font-bold text-stone-900 dark:text-white tracking-wide">ADMIN PANEL</span>
+            <span class="block text-sm font-normal text-stone-500 dark:text-gray-400 mt-0.5">techiesnine (05TPLP009)</span>
+          </a>
         </div>
 
         <!-- Menu Navigasi Admin -->
@@ -162,12 +162,11 @@
       <!-- ================= SIDEBAR USER / MAHASISWA ================= -->
       <div class="flex flex-col flex-grow px-5 py-6 overflow-y-auto no-scrollbar">
         
-        <!-- Logo Teks Tegas di Kiri Atas -->
-        <div class="mb-8 px-1">
-          <a href="/" class="inline-block group">
-            <span class="font-heading font-extrabold text-2xl tracking-tight text-stone-900 dark:text-white group-hover:text-stone-700 dark:group-hover:text-stone-300 transition">
-              05TPLP009
-            </span>
+        <!-- Brand Header: techiesnine (Minimalis Tipografi) -->
+        <div class="mb-6 flex flex-col px-1">
+          <a href="/" class="block">
+            <span class="text-2xl font-bold text-stone-900 dark:text-white tracking-wide">techiesnine</span>
+            <span class="block text-sm font-normal text-stone-500 dark:text-gray-400 mt-0.5">05TPLP009</span>
           </a>
         </div>
 
@@ -328,15 +327,20 @@
     <header class="md:hidden sticky top-0 z-30 flex items-center justify-between px-4 py-3 bg-white/95 dark:bg-[#1C1B1A]/95 backdrop-blur-md border-b border-stone-200 dark:border-stone-800">
       <div class="flex items-center">
         <% if (typeof isAdmin !== 'undefined' && isAdmin) { %>
-          <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-sm bg-stone-900 dark:bg-stone-100"></span>
-            <span class="font-heading font-extrabold text-lg tracking-tight text-stone-900 dark:text-white">
+          <a href="/admin" class="block">
+            <span class="font-bold text-base text-stone-900 dark:text-white tracking-wide leading-none block">
               ADMIN PANEL
             </span>
-          </div>
+            <span class="text-xs font-normal text-stone-500 dark:text-gray-400 mt-0.5 block">techiesnine</span>
+          </a>
         <% } else { %>
-          <a href="/" class="font-heading font-extrabold text-xl tracking-tight text-stone-900 dark:text-white">
-            05TPLP009
+          <a href="/" class="block">
+            <span class="text-lg font-bold text-stone-900 dark:text-white tracking-wide leading-none block">
+              techiesnine
+            </span>
+            <span class="text-xs font-normal text-stone-500 dark:text-gray-400 mt-0.5 block">
+              05TPLP009
+            </span>
           </a>
         <% } %>
       </div>

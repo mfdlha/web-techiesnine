@@ -13,7 +13,7 @@ router.use(
   basicAuth({
     users: { [adminUser]: adminPassword },
     challenge: true,
-    realm: 'Portal Admin 05TPLP009',
+    realm: 'Portal Admin techiesnine (05TPLP009)',
     unauthorizedResponse: () => 'Akses ditolak: Autentikasi diperlukan untuk membuka Panel Admin.',
   })
 );
@@ -49,7 +49,7 @@ router.get('/', async (req, res) => {
     };
 
     res.render('pages/admin', {
-      title: 'Ringkasan & Statistik - Admin 05TPLP009',
+      title: 'Ringkasan & Statistik - techiesnine Admin',
       currentPage: 'admin',
       status: req.query.status || null,
       stats,
@@ -58,7 +58,7 @@ router.get('/', async (req, res) => {
   } catch (error) {
     console.error('Error saat mengambil data ringkasan statistik admin:', error);
     res.render('pages/admin', {
-      title: 'Ringkasan & Statistik - Admin 05TPLP009',
+      title: 'Ringkasan & Statistik - techiesnine Admin',
       currentPage: 'admin',
       status: req.query.status || null,
       stats: {
@@ -82,7 +82,7 @@ router.get('/tugas-list', async (req, res) => {
   try {
     const result = await db.execute('SELECT * FROM tugas ORDER BY id DESC');
     res.render('pages/admin-list-tugas', {
-      title: 'Kelola Tugas Kuliah - Admin 05TPLP009',
+      title: 'Kelola Tugas Kuliah - techiesnine Admin',
       currentPage: 'admin-tugas',
       status: req.query.status || null,
       tugas: result.rows || [],
@@ -91,7 +91,7 @@ router.get('/tugas-list', async (req, res) => {
   } catch (error) {
     console.error('Error saat load daftar tugas:', error);
     res.render('pages/admin-list-tugas', {
-      title: 'Kelola Tugas Kuliah - Admin 05TPLP009',
+      title: 'Kelola Tugas Kuliah - techiesnine Admin',
       currentPage: 'admin-tugas',
       status: 'gagal',
       tugas: [],
@@ -109,7 +109,7 @@ router.get('/kas-list', async (req, res) => {
       db.execute("SELECT COALESCE(SUM(CASE WHEN LOWER(jenis) = 'pemasukan' THEN nominal ELSE -nominal END), 0) AS saldo FROM kas"),
     ]);
     res.render('pages/admin-list-kas', {
-      title: 'Kelola Mutasi Kas - Admin 05TPLP009',
+      title: 'Kelola Mutasi Kas - techiesnine Admin',
       currentPage: 'admin-kas',
       status: req.query.status || null,
       kas: result.rows || [],
@@ -119,7 +119,7 @@ router.get('/kas-list', async (req, res) => {
   } catch (error) {
     console.error('Error saat load buku mutasi kas:', error);
     res.render('pages/admin-list-kas', {
-      title: 'Kelola Mutasi Kas - Admin 05TPLP009',
+      title: 'Kelola Mutasi Kas - techiesnine Admin',
       currentPage: 'admin-kas',
       status: 'gagal',
       kas: [],
@@ -134,7 +134,7 @@ router.get('/mentari-list', async (req, res) => {
   try {
     const result = await db.execute('SELECT * FROM mentari ORDER BY id DESC');
     res.render('pages/admin-list-mentari', {
-      title: 'Kelola Mentari E-Learning - Admin 05TPLP009',
+      title: 'Kelola Mentari E-Learning - techiesnine Admin',
       currentPage: 'admin-mentari',
       status: req.query.status || null,
       mentari: result.rows || [],
@@ -143,7 +143,7 @@ router.get('/mentari-list', async (req, res) => {
   } catch (error) {
     console.error('Error saat load daftar mentari:', error);
     res.render('pages/admin-list-mentari', {
-      title: 'Kelola Mentari E-Learning - Admin 05TPLP009',
+      title: 'Kelola Mentari E-Learning - techiesnine Admin',
       currentPage: 'admin-mentari',
       status: 'gagal',
       mentari: [],
@@ -157,7 +157,7 @@ router.get('/matkul-list', async (req, res) => {
   try {
     const result = await db.execute('SELECT * FROM mata_kuliah ORDER BY id ASC');
     res.render('pages/admin-list-matkul', {
-      title: 'Kelola Mata Kuliah - Admin 05TPLP009',
+      title: 'Kelola Mata Kuliah - techiesnine Admin',
       currentPage: 'admin-matkul',
       status: req.query.status || null,
       matkul: result.rows || [],
@@ -166,7 +166,7 @@ router.get('/matkul-list', async (req, res) => {
   } catch (error) {
     console.error('Error saat load daftar mata kuliah:', error);
     res.render('pages/admin-list-matkul', {
-      title: 'Kelola Mata Kuliah - Admin 05TPLP009',
+      title: 'Kelola Mata Kuliah - techiesnine Admin',
       currentPage: 'admin-matkul',
       status: 'gagal',
       matkul: [],
@@ -180,7 +180,7 @@ router.get('/tautan-list', async (req, res) => {
   try {
     const result = await db.execute('SELECT * FROM tautan_cepat ORDER BY id DESC');
     res.render('pages/admin-list-tautan', {
-      title: 'Kelola Tautan Cepat - Admin 05TPLP009',
+      title: 'Kelola Tautan Cepat - techiesnine Admin',
       currentPage: 'admin-tautan',
       status: req.query.status || null,
       tautan: result.rows || [],
@@ -190,7 +190,7 @@ router.get('/tautan-list', async (req, res) => {
   } catch (error) {
     console.error('Error saat load daftar tautan cepat:', error);
     res.render('pages/admin-list-tautan', {
-      title: 'Kelola Tautan Cepat - Admin 05TPLP009',
+      title: 'Kelola Tautan Cepat - techiesnine Admin',
       currentPage: 'admin-tautan',
       status: 'gagal',
       tautan: [],
@@ -211,7 +211,7 @@ router.get('/tugas/add', async (req, res) => {
     const matkul = matkulRes.rows || [];
 
     res.render('pages/admin-add-tugas', {
-      title: 'Tambah Tugas Kuliah - Admin 05TPLP009',
+      title: 'Tambah Tugas Kuliah - techiesnine Admin',
       currentPage: 'admin',
       matkul,
       mataKuliah: matkul,
@@ -220,7 +220,7 @@ router.get('/tugas/add', async (req, res) => {
   } catch (error) {
     console.error('Error saat load form tambah tugas:', error);
     res.render('pages/admin-add-tugas', {
-      title: 'Tambah Tugas Kuliah - Admin 05TPLP009',
+      title: 'Tambah Tugas Kuliah - techiesnine Admin',
       currentPage: 'admin',
       matkul: [],
       mataKuliah: [],
@@ -236,7 +236,7 @@ router.get('/mentari/add', async (req, res) => {
     const matkul = matkulRes.rows || [];
 
     res.render('pages/admin-add-mentari', {
-      title: 'Tambah Sesi Mentari - Admin 05TPLP009',
+      title: 'Tambah Sesi Mentari - techiesnine Admin',
       currentPage: 'admin',
       matkul,
       mataKuliah: matkul,
@@ -245,7 +245,7 @@ router.get('/mentari/add', async (req, res) => {
   } catch (error) {
     console.error('Error saat load form tambah mentari:', error);
     res.render('pages/admin-add-mentari', {
-      title: 'Tambah Sesi Mentari - Admin 05TPLP009',
+      title: 'Tambah Sesi Mentari - techiesnine Admin',
       currentPage: 'admin',
       matkul: [],
       mataKuliah: [],
@@ -257,7 +257,7 @@ router.get('/mentari/add', async (req, res) => {
 // GET /admin/kas/add - Halaman Catat Transaksi Kas
 router.get('/kas/add', (req, res) => {
   res.render('pages/admin-add-kas', {
-    title: 'Catat Transaksi Kas - Admin 05TPLP009',
+    title: 'Catat Transaksi Kas - techiesnine Admin',
     currentPage: 'admin',
     isAdmin: true,
   });
@@ -266,7 +266,7 @@ router.get('/kas/add', (req, res) => {
 // GET /admin/matkul/add - Halaman Tambah Mata Kuliah
 router.get('/matkul/add', (req, res) => {
   res.render('pages/admin-add-matkul', {
-    title: 'Tambah Mata Kuliah - Admin 05TPLP009',
+    title: 'Tambah Mata Kuliah - techiesnine Admin',
     currentPage: 'admin',
     isAdmin: true,
   });
@@ -275,7 +275,7 @@ router.get('/matkul/add', (req, res) => {
 // GET /admin/tautan/add - Halaman Tambah Tautan Cepat
 router.get('/tautan/add', (req, res) => {
   res.render('pages/admin-add-tautan', {
-    title: 'Tambah Tautan Cepat - Admin 05TPLP009',
+    title: 'Tambah Tautan Cepat - techiesnine Admin',
     currentPage: 'admin',
     isAdmin: true,
   });
@@ -612,7 +612,7 @@ router.get('/:type/edit/:id', async (req, res) => {
     };
 
     res.render('pages/admin-edit', {
-      title: `Edit ${typeTitleMap[type] || type} - 05TPLP009`,
+      title: `Edit ${typeTitleMap[type] || type} - techiesnine Admin`,
       currentPage: 'admin',
       type,
       data: result.rows[0],
