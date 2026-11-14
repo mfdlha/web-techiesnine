@@ -129,6 +129,11 @@ router.get('/kas-list', async (req, res) => {
   }
 });
 
+// GET /admin/kas/pengeluaran - Pintasan Kelola Kas Pengeluaran
+router.get('/kas/pengeluaran', (req, res) => {
+  res.redirect('/admin/kas-list');
+});
+
 // GET /admin/mentari-list - Kelola Sesi Mentari E-Learning
 router.get('/mentari-list', async (req, res) => {
   try {

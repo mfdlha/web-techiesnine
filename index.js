@@ -170,7 +170,8 @@ app.get('/tugas', async (req, res) => {
     const nowIso = new Date().toISOString();
     const filterMatkul = req.query.matkul && req.query.matkul.trim() !== '' ? req.query.matkul.trim() : null;
     const filterTipe = req.query.tipe && req.query.tipe.trim() !== '' ? req.query.tipe.trim() : 'Semua';
-    const sort = req.query.sort && req.query.sort.trim() === 'terjauh' ? 'terjauh' : 'terdekat';
+    const rawSort = (req.query.urutkan || req.query.sort || '').trim();
+    const sort = (rawSort === 'terjauh' || rawSort === 'terlama') ? 'terjauh' : 'terdekat';
 
     const sortOrder = sort === 'terjauh' ? 'DESC' : 'ASC';
 
@@ -228,6 +229,7 @@ app.get('/tugas', async (req, res) => {
       filterTipe,
       sort,
       sortOrder: sort,
+      urutkan: sort === 'terjauh' ? 'terlama' : 'terdekat',
       selectedMatkul,
       tautanMatkulKhusus,
       tugasAktif,
@@ -334,6 +336,21 @@ app.get('/kas', async (req, res) => {
       mataKuliah: [],
       tautanCepat: []
     });
+  }
+});
+
+// GET /kas/pengeluaran - Detail Pengeluaran Kas Publik
+app.get('/kas/pengeluaran', async (req, res) => {
+  try {
+    const result = await db.execute("SELECT * FROM kas WHERE LOWER(jenis) = 'pengeluaran' ORDER BY tanggal DESC");
+    res.render('pages/kas-pengeluaran', {
+      title: 'Detail Pengeluaran Kas - techiesnine',
+      currentPage: 'kas',
+      pengeluaran: result.rows || []
+    });
+  } catch (error) {
+    console.error('Error load detail pengeluaran:', error);
+    res.redirect('/kas');
   }
 });
 
