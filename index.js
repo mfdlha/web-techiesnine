@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
-const marked = require('marked');
 require('dotenv').config();
 
 const db = require('./config/db');
@@ -256,6 +255,7 @@ app.get('/tugas/:id', async (req, res) => {
       return res.redirect('/tugas');
     }
 
+    const { marked } = await import('marked');
     const tugas = result.rows[0];
     tugas.deskripsi_html = tugas.deskripsi ? marked.parse(tugas.deskripsi) : '';
 
