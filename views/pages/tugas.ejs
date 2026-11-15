@@ -101,8 +101,8 @@
         </div>
 
         <!-- Kanan: Filter dan Urutkan -->
-        <div class="flex flex-wrap items-center gap-4 lg:justify-end">
-          <form method="GET" class="flex flex-wrap items-center gap-3">
+        <div class="flex flex-row gap-2 w-full md:w-auto lg:justify-end">
+          <form method="GET" class="flex flex-row gap-2 w-full md:w-auto">
             <% if (typeof filterMatkul !== 'undefined' && filterMatkul) { %>
               <input type="hidden" name="matkul" value="<%= filterMatkul %>">
             <% } %>
@@ -116,42 +116,42 @@
             %>
 
             <!-- Filter Tipe -->
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 flex-1 sm:flex-initial">
               <label class="text-xs font-medium text-stone-500 hidden sm:block">Tipe:</label>
-              <div class="relative inline-block text-left custom-dropdown-container z-50">
+              <div class="relative inline-block text-left custom-dropdown-container z-50 w-full sm:w-auto">
                 <!-- Input hidden untuk form submit -->
                 <input type="hidden" name="tipe" id="input-tipe" value="<%= currentTipe %>">
                 
-                <button type="button" onclick="toggleCustomDropdown('dropdown-tipe')" class="inline-flex justify-between items-center w-36 px-4 py-2 bg-transparent border border-gray-700 rounded-lg text-sm text-gray-300 hover:border-gray-500 focus:outline-none transition-colors">
-                  <span id="label-tipe"><%= labelTipe %></span>
-                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                <button type="button" onclick="toggleCustomDropdown('dropdown-tipe')" class="inline-flex justify-between items-center w-full sm:w-36 px-3 sm:px-4 py-2 bg-white dark:bg-[#1C1C1C] text-gray-900 dark:text-gray-300 border border-gray-300 dark:border-gray-800 rounded-lg text-xs sm:text-sm hover:border-gray-400 dark:hover:border-gray-700 focus:outline-none transition-colors">
+                  <span id="label-tipe" class="truncate"><%= labelTipe %></span>
+                  <svg class="w-4 h-4 ml-1 sm:ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </button>
                 
-                <div id="dropdown-tipe" class="hidden custom-dropdown-menu absolute right-0 mt-2 w-36 bg-[#1C1C1C] border border-gray-700 rounded-lg shadow-xl overflow-hidden">
-                  <ul class="py-1 text-sm text-gray-300">
-                    <li><button type="button" onclick="document.getElementById('input-tipe').value='Semua'; this.closest('form').submit();" class="w-full text-left px-4 py-2 hover:bg-gray-700 hover:text-white transition-colors">Semua Tipe</button></li>
-                    <li><button type="button" onclick="document.getElementById('input-tipe').value='Individu'; this.closest('form').submit();" class="w-full text-left px-4 py-2 hover:bg-gray-700 hover:text-white transition-colors">Individu</button></li>
-                    <li><button type="button" onclick="document.getElementById('input-tipe').value='Kelompok'; this.closest('form').submit();" class="w-full text-left px-4 py-2 hover:bg-gray-700 hover:text-white transition-colors">Kelompok</button></li>
+                <div id="dropdown-tipe" class="hidden custom-dropdown-menu absolute left-0 sm:left-auto sm:right-0 mt-2 w-36 bg-white dark:bg-[#1C1C1C] border border-gray-300 dark:border-gray-800 rounded-lg shadow-xl overflow-hidden">
+                  <ul class="py-1 text-sm text-gray-900 dark:text-gray-300">
+                    <li><button type="button" onclick="document.getElementById('input-tipe').value='Semua'; this.closest('form').submit();" class="w-full text-left px-4 py-2 hover:bg-stone-100 dark:hover:bg-gray-800 hover:text-black dark:hover:text-white transition-colors">Semua Tipe</button></li>
+                    <li><button type="button" onclick="document.getElementById('input-tipe').value='Individu'; this.closest('form').submit();" class="w-full text-left px-4 py-2 hover:bg-stone-100 dark:hover:bg-gray-800 hover:text-black dark:hover:text-white transition-colors">Individu</button></li>
+                    <li><button type="button" onclick="document.getElementById('input-tipe').value='Kelompok'; this.closest('form').submit();" class="w-full text-left px-4 py-2 hover:bg-stone-100 dark:hover:bg-gray-800 hover:text-black dark:hover:text-white transition-colors">Kelompok</button></li>
                   </ul>
                 </div>
               </div>
             </div>
 
             <!-- Filter Urutkan -->
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 flex-1 sm:flex-initial">
               <label class="text-xs font-medium text-stone-500 hidden sm:block">Urutkan:</label>
-              <div class="relative inline-block text-left custom-dropdown-container z-40">
+              <div class="relative inline-block text-left custom-dropdown-container z-40 w-full sm:w-auto">
                 <input type="hidden" name="urutkan" id="input-urutkan" value="<%= currentSort %>">
                 
-                <button type="button" onclick="toggleCustomDropdown('dropdown-urutkan')" class="inline-flex justify-between items-center w-48 px-4 py-2 bg-transparent border border-gray-700 rounded-lg text-sm text-gray-300 hover:border-gray-500 focus:outline-none transition-colors">
-                  <span id="label-urutkan"><%= labelSort %></span>
-                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                <button type="button" onclick="toggleCustomDropdown('dropdown-urutkan')" class="inline-flex justify-between items-center w-full sm:w-48 px-3 sm:px-4 py-2 bg-white dark:bg-[#1C1C1C] text-gray-900 dark:text-gray-300 border border-gray-300 dark:border-gray-800 rounded-lg text-xs sm:text-sm hover:border-gray-400 dark:hover:border-gray-700 focus:outline-none transition-colors">
+                  <span id="label-urutkan" class="truncate"><%= labelSort %></span>
+                  <svg class="w-4 h-4 ml-1 sm:ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </button>
                 
-                <div id="dropdown-urutkan" class="hidden custom-dropdown-menu absolute right-0 mt-2 w-48 bg-[#1C1C1C] border border-gray-700 rounded-lg shadow-xl overflow-hidden">
-                  <ul class="py-1 text-sm text-gray-300">
-                    <li><button type="button" onclick="document.getElementById('input-urutkan').value='terdekat'; this.closest('form').submit();" class="w-full text-left px-4 py-2 hover:bg-gray-700 hover:text-white transition-colors">Deadline Terdekat</button></li>
-                    <li><button type="button" onclick="document.getElementById('input-urutkan').value='terlama'; this.closest('form').submit();" class="w-full text-left px-4 py-2 hover:bg-gray-700 hover:text-white transition-colors">Deadline Terlama</button></li>
+                <div id="dropdown-urutkan" class="hidden custom-dropdown-menu absolute right-0 mt-2 w-44 sm:w-48 bg-white dark:bg-[#1C1C1C] border border-gray-300 dark:border-gray-800 rounded-lg shadow-xl overflow-hidden">
+                  <ul class="py-1 text-sm text-gray-900 dark:text-gray-300">
+                    <li><button type="button" onclick="document.getElementById('input-urutkan').value='terdekat'; this.closest('form').submit();" class="w-full text-left px-4 py-2 hover:bg-stone-100 dark:hover:bg-gray-800 hover:text-black dark:hover:text-white transition-colors">Deadline Terdekat</button></li>
+                    <li><button type="button" onclick="document.getElementById('input-urutkan').value='terlama'; this.closest('form').submit();" class="w-full text-left px-4 py-2 hover:bg-stone-100 dark:hover:bg-gray-800 hover:text-black dark:hover:text-white transition-colors">Deadline Terlama</button></li>
                   </ul>
                 </div>
               </div>
@@ -284,7 +284,7 @@
         </div>
 
         <div class="flex items-center gap-2">
-          <span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-stone-100 text-stone-700 dark:bg-stone-800 dark:text-stone-300 tabular-nums">
+          <span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-stone-100 text-stone-700 dark:bg-stone-800 dark:text-stone-300 tabular-nums whitespace-nowrap">
             <%= (typeof tugasArsip !== 'undefined' ? tugasArsip.length : 0) %> Diarsipkan
           </span>
         </div>
