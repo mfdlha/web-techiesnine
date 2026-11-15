@@ -1473,6 +1473,10 @@ video {
   max-width: 80rem;
 }
 
+.max-w-\[140px\] {
+  max-width: 140px;
+}
+
 .max-w-lg {
   max-width: 32rem;
 }
@@ -3475,6 +3479,10 @@ video {
 
   .sm\:w-auto {
     width: auto;
+  }
+
+  .sm\:max-w-full {
+    max-width: 100%;
   }
 
   .sm\:flex-initial {
