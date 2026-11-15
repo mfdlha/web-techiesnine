@@ -20,7 +20,7 @@
 <!-- Overlay Gelap saat menu terbuka (Khusus Mobile) -->
 <div id="mobile-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/60 z-[60] hidden md:hidden"></div>
 
-<aside class="fixed inset-y-0 left-0 z-[70] w-64 bg-white dark:bg-[#1C1C1C] border-r border-stone-200/80 dark:border-gray-800 transform -translate-x-full md:relative md:translate-x-0 transition-transform duration-300 ease-in-out flex flex-col h-screen overflow-y-auto">
+<aside class="fixed inset-y-0 left-0 z-[70] w-64 h-screen overflow-y-auto bg-white dark:bg-[#1C1C1C] border-r border-stone-200/80 dark:border-gray-800 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out flex flex-col">
   
   <% if (typeof isAdmin !== 'undefined' && isAdmin) { %>
     <!-- ================= SIDEBAR KHUSUS ADMIN ================= -->

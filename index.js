@@ -1,12 +1,19 @@
 const express = require('express');
 const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
+const { marked } = require('marked');
 require('dotenv').config();
 
 const db = require('./config/db');
 const adminRoutes = require('./routes/admin');
 
 const app = express();
+
+// Markdown Renderer Helper untuk EJS Views
+app.locals.marked = (text) => {
+  if (!text) return '';
+  return marked.parseInline ? marked.parseInline(text) : marked(text);
+};
 
 // Inisialisasi Tabel & Seeding Database Turso (SQLite)
 if (db.initDb) {
