@@ -78,7 +78,8 @@ async function initDb() {
       // Abaikan jika kolom sudah ada
     }
 
-    // Insert data awal ke tabel mentari HANYA jika tabel kosong
+    // Seed data awal mentari dinonaktifkan agar data dummy tidak dimasukkan ulang secara otomatis
+    /*
     const countMentariRes = await db.execute("SELECT COUNT(*) as count FROM mentari");
     if (Number(countMentariRes.rows[0]?.count || 0) === 0) {
       const initialMentari = [
@@ -94,6 +95,7 @@ async function initDb() {
       }
       console.log('✅ Seeding mentari berhasil.');
     }
+    */
 
     // 4. Tabel mata_kuliah
     await db.execute(`
