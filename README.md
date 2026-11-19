@@ -19,4 +19,4 @@ Portal informasi akademik berbasis web untuk manajemen penugasan, pemantauan jad
 1. **Clone repositori ini:**
    ```bash
    git clone [https://github.com/mfdlha/web-tplp009.git](https://github.com/mfdlha/web-tplp009.git)
-   cd web-tplp009
+   cd web-techiesnine
